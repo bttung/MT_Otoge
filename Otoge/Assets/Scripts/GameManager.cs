@@ -3,9 +3,13 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
+    public GUIText clearText;
+    public GUIText retryText;
+
 	// Use this for initialization
 	void Start () {
-	
+        clearText.enabled = false;
+        retryText.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -15,16 +19,19 @@ public class GameManager : MonoBehaviour {
             if (Music.IsJustChangedSection("Start")) {
                 Debug.Log("Music Entered Start");
             }
+            UpdateStart();
             break;
         case "Clear" :
             if (Music.IsJustChangedSection("Clear")) {
                 Debug.Log("Music entered Clear");
             }
+            UpdateClear();
             break;
         case "GameOver" :
             if (Music.IsJustChangedSection("GameOver")) {
                 Debug.Log("Music entered GameOver");
             }
+            UpdateGameOver();
             break;
         default: // Play
             if (Music.IsJustChangedSection("Play")) {
@@ -39,4 +46,47 @@ public class GameManager : MonoBehaviour {
             break;
 	    }
 	}
+
+    void UpdateStart() {
+        if (Input.GetMouseButtonDown(0)) {
+            Music.SeekToSection("Play");
+        }
+    }
+
+    void UpdateClear() {
+        if (Music.IsJustChangedSection()) {
+            clearText.enabled = true;
+            clearText.text = "Game Clear!";
+        }
+
+        if (Music.IsJustChangedAt(Music.CurrentSection.StartTiming_.bar + 3)) {
+            Music.Stop();
+        }
+
+        if (Input.GetMouseButtonDown(0)) {
+            Restart();
+        }
+    }
+
+    void UpdateGameOver() {
+        if (Music.IsJustChangedSection()) {
+            retryText.enabled = true;
+            retryText.text = "Click to restart";
+        }
+
+        if (Music.IsJustChangedAt(Music.CurrentSection.StartTiming_.bar + 3)) {
+            Music.Stop();
+        }
+        
+        if (Input.GetMouseButtonDown(0)) {
+            Restart();
+        }
+    }
+
+    void Restart() {
+        Music.SeekToSection("Start");
+        Music.Play("Music");
+        retryText.enabled = false;
+        clearText.enabled = false;
+    }
 }
