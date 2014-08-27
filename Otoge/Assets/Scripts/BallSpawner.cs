@@ -22,8 +22,26 @@ public class BallSpawner : MonoBehaviour {
 
     void SpawnBall() {
 
+        if (ballIndex < spawnTimings.Length && Music.isNowChanged) {
+            //  if time for this ball is already passed away, turn for the next ball
+            if (Music.Now.totalUnit > spawnTimings[ballIndex].totalUnit) {
+                ballIndex++;
+            }
+        }
+
+
         if (ballIndex < spawnTimings.Length && Music.isNowChanged && 
             (spawnTimings[ballIndex].totalUnit - 4 == Music.Now.totalUnit)) {
+
+            Debug.Log("ballIndex" + ballIndex + "\n" 
+                      //                      + " spawningTime.Length " + spawnTimings.Length + "\n" 
+                      + " Music.Now.totalUnit " + Music.Now.totalUnit + "\n" 
+                      + " bar " + Music.Now.bar + "\n"
+                      + " beat " + Music.Now.beat + "\n"
+                      + " unit " + Music.Now.unit + "\n"
+                      + " spawnTimings[ballIndex].totalUnit " + spawnTimings[ballIndex].totalUnit);
+
+
 
             Ball ball = (Instantiate (ballPrefab) as GameObject).GetComponent<Ball>();
             ball.transform.parent = transform;
