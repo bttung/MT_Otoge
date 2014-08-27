@@ -20,13 +20,13 @@ public class Ball : MonoBehaviour {
         float elapsedTime = Music.MusicalTimeFrom(spawnTiming);
         transform.position += velocity * Time.deltaTime;
 
-        Debug.Log("Test vel: " + velocity.x * Time.deltaTime);
+//        Debug.Log("Test vel: " + velocity.x * Time.deltaTime);
 
-        if (Mathf.Abs(elapsedTime) <= 5.0f) {
+        if (Mathf.Abs(elapsedTime) <= 12.0f) {
             // Check Score
 
         } else if (Music.Just > spawnTiming ) {
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
