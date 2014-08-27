@@ -3,13 +3,18 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
+    public static GameManager instance;
+    public BallSpawner ballSpawner;
+    public Vector3 goalPos;
     public GUIText clearText;
     public GUIText retryText;
 
 	// Use this for initialization
 	void Start () {
+        instance = this;
         clearText.enabled = false;
         retryText.enabled = false;
+        goalPos = GameObject.FindGameObjectWithTag("Goal").gameObject.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -85,7 +90,8 @@ public class GameManager : MonoBehaviour {
 
     void Restart() {
         Music.SeekToSection("Start");
-        Music.Play("Music");
+        Music.Play("Music");    // Name of the GameObject
+        ballSpawner.OnRestart();
         retryText.enabled = false;
         clearText.enabled = false;
     }
