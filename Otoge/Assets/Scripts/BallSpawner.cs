@@ -5,12 +5,12 @@ public class BallSpawner : MonoBehaviour {
 
     Vector3 initialScale;
     public GameObject ballPrefab;
-    public Timing[] spawnTimings;
     public int ballIndex;
+    public Timing[] spawnTimings;
 
 	// Use this for initialization
 	void Start () {
-        initialScale = transform.localScale;
+        Debug.Log("spawnTimingSize" + spawnTimings.Length);
 	}
 	
 	// Update is called once per frame
@@ -21,7 +21,10 @@ public class BallSpawner : MonoBehaviour {
 	}
 
     void SpawnBall() {
-        if (ballIndex < spawnTimings.Length && Music.isNowChanged && (spawnTimings[ballIndex].totalUnit - 4 == Music.Now.totalUnit)) {
+
+        if (ballIndex < spawnTimings.Length && Music.isNowChanged && 
+            (spawnTimings[ballIndex].totalUnit - 4 == Music.Now.totalUnit)) {
+
             Ball ball = (Instantiate (ballPrefab) as GameObject).GetComponent<Ball>();
             ball.transform.parent = transform;
             ball.transform.position = new Vector3(GameManager.instance.goalPos.x - ball.velocity.x, 

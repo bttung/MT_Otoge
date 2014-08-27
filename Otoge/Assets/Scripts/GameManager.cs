@@ -42,12 +42,12 @@ public class GameManager : MonoBehaviour {
             if (Music.IsJustChangedSection("Play")) {
                 Debug.Log("Music entered Play");
             }
-            if (Music.IsJustChangedSection("Play2")) {
-                Debug.Log("Music entered Play2");
-            }
-            if (Music.IsJustChangedSection("Play3")) {
-                Debug.Log("Music entered Play3");
-            }
+//            if (Music.IsJustChangedSection("Play2")) {
+//                Debug.Log("Music entered Play2");
+//            }
+//            if (Music.IsJustChangedSection("Play3")) {
+//                Debug.Log("Music entered Play3");
+//            }
             break;
 	    }
 	}
