@@ -22,22 +22,17 @@ public class BallSpawner : MonoBehaviour {
 	}
 
     void SpawnBall() {
-//        Debug.Log("TotalUnit " + spawnTimings[ballIndex].totalUnit + " Music.Now.totalUnit " + Music.Now.totalUnit);
         if (ballIndex < spawnTimings.Length && Music.isNowChanged && (spawnTimings[ballIndex].totalUnit - 4 == Music.Now.totalUnit)) {
             Ball ball = (Instantiate (ballPrefab) as GameObject).GetComponent<Ball>();
-            ball.transform.parent = transform;
-//            ball.transform.localPosition = Vector3.one;
-//            ball.transform.localPosition = new Vector3(Random.Range(-3, 3), Random.Range(-3, 3), Random.Range(-3, 3));           
-            ball.transform.position = new Vector3(GameManager.instance.goalPos.x - ball.velocity.x, GameManager.instance.goalPos.y, GameManager.instance.goalPos.z);
+            ball.transform.parent = transform;ball.transform.position = new Vector3(GameManager.instance.goalPos.x - ball.velocity.x, GameManager.instance.goalPos.y, GameManager.instance.goalPos.z);
             Debug.Log("SpawnedBall pos: " + ball.transform.position.ToString());
             ball.Initialize(spawnTimings[ballIndex]);
-//            Debug.Log("Spawn Ball @ " + Music.Now.totalUnit.ToString() + " ballIndex " + ballIndex.ToString() + " spawnTimingsLength " + spawnTimings.Length + "spawnTiming... totalUnit " + spawnTimings[ballIndex].totalUnit);
             ballIndex++;
         }
     }
 
     public void OnRestart() {
         ballIndex = 0;
-    }
+    }   
 
 }
