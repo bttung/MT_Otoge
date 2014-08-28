@@ -6,8 +6,8 @@ public class ScoreManager : MonoBehaviour {
     public int MISS = 0;
     public int GOOD = 5;
     public int EXCELLENT = 10;
-    public float GOOD_ERROR = 15.0f;
-    public float EXCELLENT_ERROR = 5.0f;
+    private float GOOD_ERROR = 50.0f;
+    private float EXCELLENT_ERROR = 10.0f;
 
     private BallSpawner ballSpanwer;
     private int score;
@@ -37,7 +37,7 @@ public class ScoreManager : MonoBehaviour {
 
         float error = Music.MusicalTimeFrom(ballSpanwer.spawnTimings[ballSpanwer.ballIndex]);
         error = Mathf.Abs(error);
-        Debug.Log("error: " + error);
+        Debug.Log("error: " + error + " Score: " + score);
 
 	    if (error < EXCELLENT_ERROR) {
             score += EXCELLENT;
