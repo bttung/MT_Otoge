@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Goal.cs" />
      <Compile Include="Assets\Scripts\Music.cs" />
+     <Compile Include="Assets\Scripts\Pose.cs" />
      <Compile Include="Assets\Scripts\ScoreManager.cs" />
      <Compile Include="Assets\Test\TestAnimationController.cs" />
      <Compile Include="Assets\UnityChan\Scripts\CameraController.cs" />
