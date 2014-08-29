@@ -53,11 +53,12 @@ public class OnGUIPlay : MonoBehaviour {
             Application.LoadLevel("Menu");
         }
 
-//        timingIndex = GUI.HorizontalSlider(new Rect(50.0f, 100.0f, Screen.width - 20.0f, Screen.height - 20.0f), 
-//                                           timingIndex, 
-//                                           0.0f, ballSpanwer.spawnTimings.Length);
+        float width = ballSpanwer.spawnTimings.Length * 2;
+        float nextTimingIndex = GUI.HorizontalSlider(new Rect((Screen.width - width) / 2.0f, Screen.height - 100.0f, width, 20), 
+                                           timingIndex, 
+                                           0.0f, ballSpanwer.spawnTimings.Length);
 
-
+        Debug.Log("NEtx " + nextTimingIndex);
     }
 
     public void ExchangeHitTexture(int additionalScore) {
