@@ -41,14 +41,13 @@ public class BallSpawner : MonoBehaviour {
                       + " unit " + Music.Now.unit + "\n"
                       + " spawnTimings[ballIndex].totalUnit " + spawnTimings[ballIndex].totalUnit);
 
-
-
             Ball ball = (Instantiate (ballPrefab) as GameObject).GetComponent<Ball>();
             ball.transform.parent = transform;
-            ball.transform.position = new Vector3(GameManager.instance.goalPos.x - ball.velocity.x, 
+            ball.transform.position = new Vector3(GameManager.instance.goalPos.x - 4.5f * (float)Music.MusicTimeUnit * ball.velocity.x, 
                                                   GameManager.instance.goalPos.y, 
                                                   GameManager.instance.goalPos.z);
 
+            Debug.Log("MusicTimeUnit " + Music.MusicTimeUnit + "!!!!!!!!!!!");
 //            Debug.Log("SpawnedBall pos: " + ball.transform.position.ToString());
             ball.Initialize(spawnTimings[ballIndex]);
             ballIndex++;

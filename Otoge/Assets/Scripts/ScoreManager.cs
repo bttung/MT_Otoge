@@ -6,8 +6,8 @@ public class ScoreManager : MonoBehaviour {
     public int MISS = 0;
     public int GOOD = 5;
     public int EXCELLENT = 10;
-    private float GOOD_ERROR = 20.0f;
-    private float EXCELLENT_ERROR = 10.0f;
+    private float GOOD_ERROR = 10.0f;
+    private float EXCELLENT_ERROR = 3.0f;
     private float ANIM_TIME = 0.5f;
     private float animatedTime;
     //private bool animated;
