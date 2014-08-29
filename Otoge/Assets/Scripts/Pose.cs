@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class Pose {
-    public static string IDLE1 = "IDLE1";
-    public static string IDLE2 = "IDLE2";
+    public static string IDLE1 = "IDLE1";   // POSE01
+    public static string IDLE2 = "IDLE2";   // POSE02
     public static string DANCE1 = "DANCE1";
     public static string DANCE2 = "DANCE2";
     public static string DANCE3 = "DANCE3";

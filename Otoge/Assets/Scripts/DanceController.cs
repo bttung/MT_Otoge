@@ -5,12 +5,15 @@ public class DanceController : MonoBehaviour {
 
     protected Animator avatar;
     public string animName;
+    public string lastAnimName;
     private float animTime;
 
 	// Use this for initialization
 	void Start () {
         avatar = gameObject.GetComponent<Animator>();
         animTime = 0.1f;
+        animName = "";
+        lastAnimName = "";
 	}
 	
 
@@ -24,7 +27,8 @@ public class DanceController : MonoBehaviour {
     IEnumerator StopAnimation(string pose) {
         yield return new WaitForSeconds(animTime);
         avatar.SetBool(pose, false);
-//        Debug.Log("Stopped Animation");
+        lastAnimName = pose;
+        animName = "";
     }
 
 }

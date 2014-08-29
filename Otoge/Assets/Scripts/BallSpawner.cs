@@ -7,6 +7,7 @@ public class BallSpawner : MonoBehaviour {
     public GameObject ballPrefab;
     public int ballIndex;
     public Timing[] spawnTimings;
+    private int  FAST_FORWARD_TIME = 4;
 
 	// Use this for initialization
 	void Start () {
@@ -31,24 +32,24 @@ public class BallSpawner : MonoBehaviour {
 
 
         if (ballIndex < spawnTimings.Length && Music.isNowChanged && 
-            (spawnTimings[ballIndex].totalUnit - 4 == Music.Now.totalUnit)) {
+            (spawnTimings[ballIndex].totalUnit - FAST_FORWARD_TIME == Music.Now.totalUnit)) {
 
-            Debug.Log("ballIndex" + ballIndex + "\n" 
-                      //                      + " spawningTime.Length " + spawnTimings.Length + "\n" 
-                      + " Music.Now.totalUnit " + Music.Now.totalUnit + "\n" 
-                      + " bar " + Music.Now.bar + "\n"
-                      + " beat " + Music.Now.beat + "\n"
-                      + " unit " + Music.Now.unit + "\n"
-                      + " spawnTimings[ballIndex].totalUnit " + spawnTimings[ballIndex].totalUnit);
+//            Debug.Log("ballIndex" + ballIndex + "\n"
+//                      + " Music.Now.totalUnit " + Music.Now.totalUnit + "\n" 
+//                      + " bar " + Music.Now.bar + "\n"
+//                      + " beat " + Music.Now.beat + "\n"
+//                      + " unit " + Music.Now.unit + "\n"
+//                      + " spawnTimings[ballIndex].totalUnit " + spawnTimings[ballIndex].totalUnit);
 
             Ball ball = (Instantiate (ballPrefab) as GameObject).GetComponent<Ball>();
             ball.transform.parent = transform;
-            ball.transform.position = new Vector3(GameManager.instance.goalPos.x - 4.5f * (float)Music.MusicTimeUnit * ball.velocity.x, 
+            ball.transform.position = new Vector3(GameManager.instance.goalPos.x - (FAST_FORWARD_TIME + 0.5f) * (float)Music.MusicTimeUnit * ball.velocity.x, 
                                                   GameManager.instance.goalPos.y, 
                                                   GameManager.instance.goalPos.z);
 
-            Debug.Log("MusicTimeUnit " + Music.MusicTimeUnit + "!!!!!!!!!!!");
+//            Debug.Log("MusicTimeUnit " + Music.MusicTimeUnit + "!!!!!!!!!!!");
 //            Debug.Log("SpawnedBall pos: " + ball.transform.position.ToString());
+
             ball.Initialize(spawnTimings[ballIndex]);
             ballIndex++;
         }

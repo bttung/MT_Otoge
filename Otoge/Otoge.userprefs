@@ -1,6 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ShowTitleGUI.cs">
+    <Files>
+      <File FileName="Assets/Scripts/BallSpawner.cs" Line="37" Column="5" />
+      <File FileName="Assets/Scripts/ScoreManager.cs" Line="27" Column="1" />
+      <File FileName="Assets/Scripts/Goal.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/OnGUIPlay.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="104" Column="1" />
+      <File FileName="Assets/Scripts/Music.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ShowResultGUI.cs" Line="43" Column="6" />
+      <File FileName="Assets/Scripts/ShowTitleGUI.cs" Line="5" Column="1" />
+      <File FileName="Assets/Test/TestAnimationController.cs" Line="43" Column="79" />
+      <File FileName="Assets/Scripts/DanceController.cs" Line="23" Column="1" />
+      <File FileName="Assets/Scripts/Pose.cs" Line="6" Column="48" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

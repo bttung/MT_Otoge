@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     public Vector3 goalPos;
     public GUIText clearText;
     public GUIText retryText;
+    ScoreManager scoreManager;
 
 	// Use this for initialization
 	void Start () {
@@ -15,6 +16,15 @@ public class GameManager : MonoBehaviour {
         clearText.enabled = false;
         retryText.enabled = false;
         goalPos = GameObject.FindGameObjectWithTag("Goal").gameObject.transform.position;
+        if (goalPos == null) {
+            Debug.LogError("GameManager: goalPos is null");
+        }
+
+        //scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+        scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+        if (scoreManager == null) {
+            Debug.LogError("GameManager: scoreManager is null");
+        }
 	}
 	
 	// Update is called once per frame
@@ -76,7 +86,7 @@ public class GameManager : MonoBehaviour {
     void UpdateGameOver() {
         if (Music.IsJustChangedSection()) {
             retryText.enabled = true;
-            retryText.text = "Click to restart";
+            retryText.text = "See Game Result";
         }
 
         if (Music.IsJustChangedAt(Music.CurrentSection.StartTiming_.bar + 3)) {
@@ -84,8 +94,17 @@ public class GameManager : MonoBehaviour {
         }
         
         if (Input.GetMouseButtonDown(0)) {
-            Restart();
+//            Restart();
+            LoadScoreLevel();
         }
+    }
+
+    void LoadScoreLevel() {
+        PlayerPrefs.SetInt("Score" , scoreManager.score);
+        PlayerPrefs.SetInt("Excellent", scoreManager.excellentTime);
+        PlayerPrefs.SetInt("Good", scoreManager.goodTime);
+        PlayerPrefs.SetInt("Miss", scoreManager.missTime);
+        Application.LoadLevel("Score");
     }
 
     void Restart() {

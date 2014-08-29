@@ -6,34 +6,42 @@ public class ScoreManager : MonoBehaviour {
     public int MISS = 0;
     public int GOOD = 5;
     public int EXCELLENT = 10;
-    private float GOOD_ERROR = 10.0f;
-    private float EXCELLENT_ERROR = 3.0f;
+    private float GOOD_ERROR = 15.0f;
+    private float EXCELLENT_ERROR = 9.0f;
     private float ANIM_TIME = 0.5f;
     private float animatedTime;
-    //private bool animated;
 
     private DanceController danceCtr;
     private BallSpawner ballSpanwer;
-    private int score;
+    public int score;
+    public int excellentTime;
+    public int goodTime;
+    public int missTime;
     private int additionalScore;
     private int checkedIndex;
     public GUIText summary;
 
 	// Use this for initialization
 	void Start () {
-//        danceCtr = GameObject.FindGameObjectWithTag("Player").GetComponent<DanceController>();
+        // danceCtr = GameObject.FindGameObjectWithTag("Player").GetComponent<DanceController>();
         danceCtr = GameObject.Find("UnityChan").GetComponent<DanceController>();
         if (danceCtr == null) {
-            Debug.Log("danceCtr null");
+            Debug.LogError("ScoreManager: danceCtr null");
         }
 
         ballSpanwer = GameObject.FindGameObjectWithTag("BallSpawner").GetComponent<BallSpawner>();
+        if (ballSpanwer == null) {
+            Debug.LogError("ScoreManager: ballSpawner is null");
+        }
+
         score = 0;
         additionalScore = 0;
         summary.text = "";
         checkedIndex = 0;
         animatedTime = 0;
-//        animated = false;
+        excellentTime = 0;
+        goodTime = 0;
+        missTime = 0;
 	}
 	
 	// Update is called once per frame
@@ -51,33 +59,33 @@ public class ScoreManager : MonoBehaviour {
 
         CheckScore();
         DoAnimation();
-
-        score += additionalScore;
-        additionalScore = 0;
 	}
 
     void CheckScore() {
         float error = Music.MusicalTimeFrom(ballSpanwer.spawnTimings[ballSpanwer.ballIndex]);
         error = Mathf.Abs(error);
-        Debug.Log("error: " + error + " Score: " + score);
+        // Debug.Log("error: " + error + " Score: " + score);  
         
         if (error < EXCELLENT_ERROR) {
-//            score += EXCELLENT;
-            additionalScore = EXCELLENT;
             checkedIndex = ballSpanwer.ballIndex;
+            additionalScore = EXCELLENT;
+            score += EXCELLENT;
+            excellentTime++;
             return;
         }
         
         if (error <= GOOD_ERROR) {
-//            score += GOOD;
+            checkedIndex = ballSpanwer.ballIndex;
             additionalScore = GOOD;
-            checkedIndex = ballSpanwer.ballIndex;
-            checkedIndex = ballSpanwer.ballIndex;
+            score += GOOD;
+            goodTime++;
             return;
         }
 
         if (error > GOOD_ERROR) {
+            // If user missed the ball, he can click again and take the score if he hit good or excellent
             additionalScore = MISS;
+            missTime++;
             return;
         }
     }
