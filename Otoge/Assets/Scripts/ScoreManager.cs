@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ScoreManager : MonoBehaviour {
 
@@ -7,12 +8,14 @@ public class ScoreManager : MonoBehaviour {
     public int GOOD = 5;
     public int EXCELLENT = 10;
     private float GOOD_ERROR = 15.0f;
-    private float EXCELLENT_ERROR = 9.0f;
+    private float EXCELLENT_ERROR = 10.0f;
     private float ANIM_TIME = 0.5f;
     private float animatedTime;
 
     private DanceController danceCtr;
+    private string goodPoseName;
     private BallSpawner ballSpanwer;
+    public int level;
     public int score;
     public int excellentTime;
     public int goodTime;
@@ -42,8 +45,21 @@ public class ScoreManager : MonoBehaviour {
         excellentTime = 0;
         goodTime = 0;
         missTime = 0;
+
+        // Receive new action depend on playerLevel
+        level = PlayerPrefs.GetInt("Level");
+        if (level <= 0) {
+            level = 1;
+        }
+        List<string> goodPose = Pose.GetPoseList(level);
+        goodPoseName = goodPose[goodPose.Count - 1];
+
 	}
 	
+    void ConfigureGoodPose() {
+
+    }
+
 	// Update is called once per frame
 	void Update () {
 
@@ -90,11 +106,13 @@ public class ScoreManager : MonoBehaviour {
         }
     }
 
+
+
     void DoAnimation() {
         if (additionalScore == GOOD) {
-            danceCtr.DoAnimation(Pose.DANCE1);
+            danceCtr.DoAnimation(goodPoseName);
         } else if (additionalScore == EXCELLENT) {
-            danceCtr.DoAnimation(Pose.DANCE4);
+            danceCtr.DoAnimation(Pose.DANCE_EXCELLENT);
         } else if (additionalScore == MISS) {
             danceCtr.DoAnimation(Pose.SLIPPED1);
         }

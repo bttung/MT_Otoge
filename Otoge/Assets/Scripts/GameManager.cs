@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour {
         if (scoreManager == null) {
             Debug.LogError("GameManager: scoreManager is null");
         }
+        CalculatePlayerLevel();
 	}
 	
 	// Update is called once per frame
@@ -95,15 +96,40 @@ public class GameManager : MonoBehaviour {
         
         if (Input.GetMouseButtonDown(0)) {
 //            Restart();
+            SavePlayerData();
             LoadScoreLevel();
         }
     }
 
-    void LoadScoreLevel() {
+    void CalculatePlayerLevel() {
+        int level = 1;
+        if (Application.loadedLevelName == "Level1") {
+            level = 1;
+        } else if (Application.loadedLevelName == "Level2") {
+            level = 2;
+        } else if (Application.loadedLevelName == "Level3") {
+            level = 3;
+        }
+
+        if (level > scoreManager.level) {
+            scoreManager.level = level;
+        }
+    }
+
+
+    void SavePlayerData() {
         PlayerPrefs.SetInt("Score" , scoreManager.score);
+        if (scoreManager.score > PlayerPrefs.GetInt("Score")) {
+            PlayerPrefs.SetInt("BestScore", scoreManager.score);
+        }
         PlayerPrefs.SetInt("Excellent", scoreManager.excellentTime);
         PlayerPrefs.SetInt("Good", scoreManager.goodTime);
         PlayerPrefs.SetInt("Miss", scoreManager.missTime);
+        PlayerPrefs.SetInt("Level", scoreManager.level);
+
+    }
+
+    void LoadScoreLevel() {
         Application.LoadLevel("Score");
     }
 

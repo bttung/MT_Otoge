@@ -27,10 +27,10 @@ public class ShowMenuGUI : MonoBehaviour {
             Application.LoadLevel("Level1");
         }
         if( GUI.Button( new Rect( Screen.width / 2.0f, 150, buttonWidth, buttonHeight ), "Level2" ) ){
-//            Application.LoadLevel("Level2");
+            Application.LoadLevel("Level2");
         }
         if( GUI.Button( new Rect( Screen.width / 2.0f, 200, buttonWidth, buttonHeight ), "Level3" ) ){
-//            Application.LoadLevel("Level3");
+            Application.LoadLevel("Level3");
         }
         if( GUI.Button( new Rect( Screen.width / 2.0f, 250, buttonWidth, buttonHeight ), "Score" ) ){
             Application.LoadLevel("Score");
