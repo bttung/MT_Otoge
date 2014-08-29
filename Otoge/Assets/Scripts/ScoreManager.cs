@@ -63,7 +63,7 @@ public class ScoreManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        summary.text = "Score: " + score + " checkedIndex " + checkedIndex;
+        //summary.text = "Score: " + score + " checkedIndex " + checkedIndex;
 
         if (!isInputed()) {
             return;

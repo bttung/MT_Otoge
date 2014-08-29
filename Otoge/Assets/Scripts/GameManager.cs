@@ -4,7 +4,7 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
-    public BallSpawner ballSpawner;
+//    public BallSpawner ballSpawner;
     public Vector3 goalPos;
     public GUIText clearText;
     public GUIText retryText;
@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
         if (scoreManager == null) {
             Debug.LogError("GameManager: scoreManager is null");
         }
-        CalculatePlayerLevel();
+        CalculatePlayerLevel(); 
 	}
 	
 	// Update is called once per frame
@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour {
     void UpdateGameOver() {
         if (Music.IsJustChangedSection()) {
             retryText.enabled = true;
-            retryText.text = "See Game Result";
+            //   retryText.text = "See Game Result";
         }
 
         if (Music.IsJustChangedAt(Music.CurrentSection.StartTiming_.bar + 3)) {
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour {
         }
         
         if (Input.GetMouseButtonDown(0)) {
-//            Restart();
+            Debug.Log("GameOver.........................");
             SavePlayerData();
             LoadScoreLevel();
         }
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour {
     }
 
 
-    void SavePlayerData() {
+    public void SavePlayerData() {
         PlayerPrefs.SetInt("Score" , scoreManager.score);
         if (scoreManager.score > PlayerPrefs.GetInt("Score")) {
             PlayerPrefs.SetInt("BestScore", scoreManager.score);
@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour {
     void Restart() {
         Music.SeekToSection("Start");
         Music.Play("Music");    // Name of the GameObject
-        ballSpawner.OnRestart();
+//        ballSpawner.OnRestart();
         retryText.enabled = false;
         clearText.enabled = false;
     }

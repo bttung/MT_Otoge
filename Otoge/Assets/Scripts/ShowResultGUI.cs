@@ -23,8 +23,8 @@ public class ShowResultGUI : MonoBehaviour {
         detailScore = "Excellent: " + excellent.ToString() + "\n"
                         + "Good: " + good.ToString() + "\n"
                         + "Miss: " + miss.ToString();
-        buttonWidth = 150;
-        buttonHeight = 40;
+        buttonWidth = 400;
+        buttonHeight = 80;
 	}
 	
 	// Update is called once per frame
@@ -34,14 +34,14 @@ public class ShowResultGUI : MonoBehaviour {
 
     void OnGUI() {
         GUI.skin = guiStyle;
-        GUI.Box(new Rect(10.0f, 30.0f, Screen.width - 20.0f, Screen.height - 20.0f), title);
-        GUI.Label( new Rect( 20, 50, 200, 40), scoreLabel + score.ToString() );
+        GUI.Box(new Rect(100.0f, 100.0f, 400, 100), title);
+        GUI.Label( new Rect(100, 170, 400, 80), "Score: " + score.ToString() );
                        
-        GUILayout.BeginArea(new Rect(30.0f, 70.0f, Screen.width - 20.0f, Screen.height - 40.0f));
+        GUILayout.BeginArea(new Rect(100.0f, 250.0f, Screen.width - 20.0f, Screen.height - 40.0f));
         GUILayout.Label(detailScore);
         GUILayout.EndArea();
 
-        if( GUI.Button( new Rect( Screen.width / 2.0f, 100, buttonWidth, buttonHeight ), "Return to Menu" ) ){
+        if( GUI.Button( new Rect( Screen.width / 2.0f, 100, buttonWidth, buttonHeight ), "Return to Menu"/*, CustomStyle.GetStyle()*/ ) ){
             Application.LoadLevel("Menu");
         }
     }

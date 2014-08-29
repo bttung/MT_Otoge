@@ -20,7 +20,7 @@ public class ShowTitleGUI : MonoBehaviour {
     
     void OnGUI() {
         GUI.skin = guiStyle;
-        GUI.Box(new Rect(10.0f, 30.0f, Screen.width - 20.0f, Screen.height - 20.0f), title);
+        GUI.Box(new Rect(10.0f, 100.0f, Screen.width - 20.0f, Screen.height - 20.0f), title);
     }
 
 }
