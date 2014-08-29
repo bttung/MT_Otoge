@@ -12,16 +12,26 @@ public class OnGUIPlay : MonoBehaviour {
     Texture         messageTexture;
     ScoreManager scoreManager;
     GameManager gameManager;
+    BallSpawner ballSpanwer;
+    float timingIndex = 0.0f;
 
 	// Use this for initialization
 	void Start () {
 //        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         if (scoreManager == null) {
-            Debug.LogError("scoreManager is null");
+            Debug.LogError("OnGUI scoreManager is null");
         }
 
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if (gameManager == null) {
+            Debug.LogError("OnGUI: gameManager is null");
+        }
+
+        ballSpanwer = GameObject.FindGameObjectWithTag("BallSpawner").GetComponent<BallSpawner>();
+        if (ballSpanwer == null) {
+            Debug.LogError("OnGUI: ballSpawner is null");
+        }
 	}
 	
 	// Update is called once per frame
@@ -42,6 +52,12 @@ public class OnGUIPlay : MonoBehaviour {
 
             Application.LoadLevel("Menu");
         }
+
+//        timingIndex = GUI.HorizontalSlider(new Rect(50.0f, 100.0f, Screen.width - 20.0f, Screen.height - 20.0f), 
+//                                           timingIndex, 
+//                                           0.0f, ballSpanwer.spawnTimings.Length);
+
+
     }
 
     public void ExchangeHitTexture(int additionalScore) {
