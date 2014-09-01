@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
     public GUIText clearText;
     public GUIText retryText;
     ScoreManager scoreManager;
+//    public bool gameOver;
+//    public GUISkin guiSkin;
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +27,9 @@ public class GameManager : MonoBehaviour {
         if (scoreManager == null) {
             Debug.LogError("GameManager: scoreManager is null");
         }
+
         CalculatePlayerLevel(); 
+//        gameOver = false;
 	}
 	
 	// Update is called once per frame
@@ -72,7 +76,6 @@ public class GameManager : MonoBehaviour {
     void UpdateClear() {
         if (Music.IsJustChangedSection()) {
             clearText.enabled = true;
-            clearText.text = "Game Clear!";
         }
 
         if (Music.IsJustChangedAt(Music.CurrentSection.StartTiming_.bar + 3)) {
@@ -85,17 +88,17 @@ public class GameManager : MonoBehaviour {
     }
 
     void UpdateGameOver() {
+//        GUI.skin = guiSkin;
         if (Music.IsJustChangedSection()) {
             retryText.enabled = true;
-            //   retryText.text = "See Game Result";
+            retryText.text = "See Game Result";
         }
-
+        
         if (Music.IsJustChangedAt(Music.CurrentSection.StartTiming_.bar + 3)) {
             Music.Stop();
         }
         
         if (Input.GetMouseButtonDown(0)) {
-            Debug.Log("GameOver.........................");
             SavePlayerData();
             LoadScoreLevel();
         }
@@ -129,7 +132,7 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    void LoadScoreLevel() {
+    public void LoadScoreLevel() {
         Application.LoadLevel("Score");
     }
 

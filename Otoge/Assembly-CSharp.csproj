@@ -48,10 +48,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Ball.cs" />
      <Compile Include="Assets\Scripts\BallSpawner.cs" />
-     <Compile Include="Assets\Scripts\CustomStyle.cs" />
      <Compile Include="Assets\Scripts\DanceController.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
-     <Compile Include="Assets\Scripts\Goal.cs" />
      <Compile Include="Assets\Scripts\Music.cs" />
      <Compile Include="Assets\Scripts\OnGUIPlay.cs" />
      <Compile Include="Assets\Scripts\Pose.cs" />
