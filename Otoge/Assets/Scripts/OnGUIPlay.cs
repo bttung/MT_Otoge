@@ -55,11 +55,11 @@ public class OnGUIPlay : MonoBehaviour {
         float width = ballSpanwer.spawnTimings.Length * 2;
 
         float nextTimingIndex = timingIndex;
+#if UNITY_EDITOR
         nextTimingIndex = GUI.HorizontalSlider(new Rect((Screen.width - width) / 2.0f, Screen.height - 100.0f, width, 20), 
                                                 nextTimingIndex, 
                                                 0.0f, ballSpanwer.spawnTimings.Length);
 
-#if UNITY_EDITOR
         if (Mathf.Abs(nextTimingIndex - timingIndex) > 5) {
             timingIndex = nextTimingIndex;
             int index = (int) timingIndex;
